@@ -21,8 +21,19 @@ formElm.addEventListener('submit', e => {
     e.preventDefault()
     const validInput= +inputElm.value
     if(validInput===''||validInput<1){
-        if(!document.querySelector(".invalid")){
+        
+        if(document.querySelector('.winmsg')){
+            (document.querySelector('.winmsg')).remove()
+            if(!document.querySelector(".invalid")){
+                formElm.insertAdjacentHTML('beforebegin', `<p class="invalid"> Please Input Valid Winning Score </p>`)
+                inputElm.value = ''
+    
+            }
+    
+        }
+        else if(!document.querySelector(".invalid")){
             formElm.insertAdjacentHTML('beforebegin', `<p class="invalid"> Please Input Valid Winning Score </p>`)
+            inputElm.value = ''
 
         }
         
@@ -34,6 +45,7 @@ formElm.addEventListener('submit', e => {
             document.querySelector('.invalid').remove()
 
         }
+        
         winScoreElm.textContent = inputElm.value
         winScore = +inputElm.value  //convert inputElm.value to number value from string
         inputElm.value = ''
